@@ -29,4 +29,18 @@ class BookController extends Controller {
  
         return redirect()->route('books.index')->with('success', 'A könyvet sikeresen kikölcsönözted!');
     }
+
+    public function returnBook($id) {
+        $borrowing = Borrowing::where('book_id', $id)
+            ->where('user_id', auth()->id())
+            ->whereNull('end_date')
+            ->firstOrFail();
+     
+        $borrowing->update(['end_date' => now()]);
+     
+        $book = Book::findOrFail($id);
+        $book->update(['available' => true]);
+     
+        return redirect()->route('books.index')->with('success', 'A könyvet sikeresen visszaadtad!');
+    }
 }

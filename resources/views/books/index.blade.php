@@ -39,13 +39,18 @@
                     <td>{{ $book->category->name }}</td>
                     <td>{{ $book->available ? 'Igen' : 'Nem' }}</td>
                     <td>
-                        @if ($book->available)
+                        @if (!$book->available && $book->borrowings->where('user_id', auth()->id())->whereNull('end_date')->count())
+                            <form action="{{ route('books.return', $book->id) }}" method="POST">
+                                @csrf
+                                <button type="submit">Visszaadás</button>
+                            </form>
+                        @elseif ($book->available)
                             <form action="{{ route('books.borrow', $book->id) }}" method="POST">
                                 @csrf
                                 <button type="submit">Kölcsönzés</button>
                             </form>
                         @else
-                            Nem elkölcsönözhető
+                            Nem elérhető
                         @endif
                     </td>
                 </tr>
