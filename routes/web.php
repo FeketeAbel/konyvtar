@@ -20,6 +20,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/books', [BookController::class, 'store'])->name('books.store');
 });
 
+Route::middleware('auth')->post('/books/{id}/borrow', [BookController::class, 'borrow'])->name('books.borrow');
+
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
 
 require __DIR__.'/auth.php';

@@ -12,9 +12,10 @@
                     {{ __("You're logged in!") }}
                 </div>
                 <div class="p-6 text-gray-900">
-                    <form action="{{ route('books.index') }}" method="post">
-                        @csrf
-                        <button>Könyvek</button>
+                    <form action="{{ route('books.index') }}" method="get">
+                        <button class="bg-blue-500 hover:bg-blue-700 font-semibold py-2 px-4 rounded shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200">
+                            Könyvek
+                        </button>
                     </form>
                 </div>
             </div>

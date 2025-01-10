@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
-    <h1>Könyvek listája</h1>
+    <h1>Kölcsönözhető könyvek</h1>
     <table>
         <thead>
             <tr>
@@ -28,7 +28,6 @@
                 <th>Szerző</th>
                 <th>Kategória</th>
                 <th>Elérhető</th>
-                <th>Kölcsönzés</th>
             </tr>
         </thead>
         <tbody>
@@ -38,16 +37,6 @@
                     <td>{{ $book->author }}</td>
                     <td>{{ $book->category->name }}</td>
                     <td>{{ $book->available ? 'Igen' : 'Nem' }}</td>
-                    <td>
-                        @if ($book->available)
-                            <form action="{{ route('books.borrow', $book->id) }}" method="POST">
-                                @csrf
-                                <button type="submit">Kölcsönzés</button>
-                            </form>
-                        @else
-                            Nem elkölcsönözhető
-                        @endif
-                    </td>
                 </tr>
             @endforeach
         </tbody>
