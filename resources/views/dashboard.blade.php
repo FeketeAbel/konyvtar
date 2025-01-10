@@ -11,6 +11,12 @@
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
                 </div>
+                <div class="p-6 text-gray-900">
+                    <form action="{{ route('books.index') }}" method="post">
+                        @csrf
+                        <button>Könyvek</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
