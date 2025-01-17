@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->boolean('available')->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
